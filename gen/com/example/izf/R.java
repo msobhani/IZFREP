@@ -42,21 +42,24 @@ public final class R {
         public static final int tab_prayer=0x7f02000e;
     }
     public static final class id {
-        public static final int icon=0x7f070009;
-        public static final int imgNewsItem=0x7f070005;
+        public static final int icon=0x7f07000a;
+        public static final int imgNewsItem=0x7f070008;
+        public static final int lvExp=0x7f070004;
         public static final int tab1=0x7f070000;
         public static final int tab2=0x7f070001;
         public static final int tab3=0x7f070002;
         public static final int tab4=0x7f070003;
-        public static final int tableRow1=0x7f070004;
-        public static final int txtBody=0x7f070008;
-        public static final int txtIntro=0x7f070007;
-        public static final int txtTitle=0x7f070006;
+        public static final int tableRow1=0x7f070007;
+        public static final int txtBody=0x7f070006;
+        public static final int txtIntro=0x7f070005;
+        public static final int txtTitle=0x7f070009;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int news_item=0x7f030001;
-        public static final int tab_indicator=0x7f030002;
+        public static final int activity_news=0x7f030001;
+        public static final int news_detail_items=0x7f030002;
+        public static final int news_item=0x7f030003;
+        public static final int tab_indicator=0x7f030004;
     }
     public static final class string {
         public static final int action_settings=0x7f060002;
