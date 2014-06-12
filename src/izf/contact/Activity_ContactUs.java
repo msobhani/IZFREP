@@ -1,13 +1,6 @@
-package com.example.izf;
+package izf.contact;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
 import android.app.ListActivity;
-import android.graphics.Color;
 import android.os.Bundle;
 
 public class Activity_ContactUs extends ListActivity{

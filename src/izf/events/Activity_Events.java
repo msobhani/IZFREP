@@ -1,4 +1,6 @@
-package com.example.izf;
+package izf.events;
+
+import izf.network.JsonDownloader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,37 +9,38 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.example.izf.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 
-public class Activity_News extends Activity{
-
-
+public class Activity_Events extends Activity{
+	
 	ExpandableListView list;
-    private String NewsUrl = "http://izfrankfurt.de/webservices/?name=ksjdf"; 
+    private String EventsUrl = "http://izfrankfurt.de/webservices/activity/"; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.activity_news);
+		this.setContentView(R.layout.activity_events);
 		
-		list = (ExpandableListView) findViewById(R.id.lvExp);
+		list = (ExpandableListView) findViewById(R.id.lvExpEvents);
 		list.setCacheColorHint(Color.TRANSPARENT);
 		
 		try
 		{
-			NewsDownloader getNews = new NewsDownloader(this);
+			JsonDownloader getEvents = new JsonDownloader(this);
 			JSONArray obj = new JSONArray();
-			obj = getNews.execute(NewsUrl).get();
-			ArrayList<News> allNews = JsonToNews(obj);
-			NewsExpandableListviewAdapter newsAdapter = 
-					new NewsExpandableListviewAdapter(this.getApplicationContext()
-							, allNews,
-							getListFeed(allNews));
+			obj = getEvents.execute(EventsUrl).get();
+			ArrayList<Events> allEvents = JsonToNews(obj);
+			EventsExpandableListviewAdapter newsAdapter = 
+					new EventsExpandableListviewAdapter(this.getApplicationContext()
+							, allEvents,
+							getListFeed(allEvents));
 			list.setAdapter(newsAdapter);
 		}
 		catch (Exception e) 
@@ -48,28 +51,28 @@ public class Activity_News extends Activity{
 		
 	}
 	
-	private HashMap<News, List<String>> getListFeed(ArrayList<News> news)
+	private HashMap<Events, List<String>> getListFeed(ArrayList<Events> events)
 	{
-		HashMap<News, List<String>> ans = new HashMap<News, List<String>>();
-		for(int i = 0 ; i < news.size() ; i++)
+		HashMap<Events, List<String>> ans = new HashMap<Events, List<String>>();
+		for(int i = 0 ; i < events.size() ; i++)
 		{
 			List<String> tmp = new ArrayList<String>();
-			tmp.add(news.get(i).getBody());
-			ans.put(news.get(i), tmp);
+			tmp.add(events.get(i).getBody());
+			ans.put(events.get(i), tmp);
 		}
 		return ans;
 	}
 	
 	@SuppressLint("NewApi") 
-	private ArrayList<News> JsonToNews(JSONArray json)
+	private ArrayList<Events> JsonToNews(JSONArray json)
 	{
-		ArrayList<News> ans = new ArrayList<News>();
+		ArrayList<Events> ans = new ArrayList<Events>();
 		try 
 		{
 			for(int i = 0 ;i < json.length() ; i++)
 			{
 				JSONObject TJson = json.getJSONObject(i);
-				News temp = new News();
+				Events temp = new Events();
 				temp.setTitle(TJson.getString("Title"));
 				temp.setThumbImage(TJson.getString("ThumbImage"));
 				temp.setIntroText(TJson.getString("IntroText"));
@@ -86,4 +89,5 @@ public class Activity_News extends Activity{
 		
 		return ans;	
 	}
+	
 }

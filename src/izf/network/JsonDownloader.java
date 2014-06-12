@@ -1,18 +1,20 @@
-package com.example.izf;
+package izf.network;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-class NewsDownloader extends AsyncTask<String, String, JSONArray> 
+public class JsonDownloader extends AsyncTask<String, String, JSONArray> 
 {
 	private ProgressDialog pDialog;
 	private Context ctx;
 	
-	public NewsDownloader(Context ctx)
+	public JsonDownloader(Context ctx)
 	{
 		this.ctx = ctx;
 	}
@@ -21,18 +23,12 @@ class NewsDownloader extends AsyncTask<String, String, JSONArray>
 	protected void onPreExecute()
 	{
 		super.onPreExecute();
-		/*pDialog = new ProgressDialog(ctx);
-		pDialog.setMessage("Getting Data ...");
-		pDialog.setIndeterminate(false);
-		pDialog.setCancelable(true);
-		pDialog.show();*/
 	}
 	
 	@Override
 	protected JSONArray doInBackground(String... args)
 	{
 		JSONParser jParser = new JSONParser();
-		// Getting JSON from URL
 		JSONArray json = jParser.getJSONFromUrl(args[0]);
 		return json;
 	}
@@ -40,6 +36,5 @@ class NewsDownloader extends AsyncTask<String, String, JSONArray>
 	@Override
 	protected void onPostExecute(JSONArray json)
 	{
-		//pDialog.dismiss();
 	}
 }

@@ -1,7 +1,14 @@
-package com.example.izf;
+package izf.news;
+
+
+import izf.network.ImageDownloader;
 
 import java.util.HashMap;
 import java.util.List;
+
+import com.example.izf.R;
+import com.example.izf.R.id;
+import com.example.izf.R.layout;
  
 import android.content.Context;
 import android.view.LayoutInflater;

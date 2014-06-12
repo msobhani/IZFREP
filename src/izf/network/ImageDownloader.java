@@ -1,4 +1,4 @@
-package com.example.izf;
+package izf.network;
 
 import java.io.InputStream;
 
@@ -8,7 +8,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
-class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
+public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
 	
     ImageView bmImage;
 

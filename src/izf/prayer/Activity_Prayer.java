@@ -1,4 +1,4 @@
-package com.example.izf;
+package izf.prayer;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import android.app.ListActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 
-public class Activity_Events extends ListActivity{
+public class Activity_Prayer extends ListActivity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

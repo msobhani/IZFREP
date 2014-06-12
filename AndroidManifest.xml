@@ -17,15 +17,15 @@
         android:theme="@android:style/Theme.Black.NoTitleBar">
         
         <activity
-            android:name="com.example.izf.Activity_News"/>
+            android:name="izf.news.Activity_News"/>
         <activity
-            android:name="com.example.izf.Activity_Events"/>
+            android:name="izf.events.Activity_Events"/>
         
         <activity
-            android:name="com.example.izf.Activity_ContactUs"/>
+            android:name="izf.contact.Activity_ContactUs"/>
         
         <activity
-            android:name="com.example.izf.Activity_Prayer"/>
+            android:name="izf.prayer.Activity_Prayer"/>
                         
         <activity
             android:name="com.example.izf.MainActivity"

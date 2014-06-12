@@ -1,4 +1,4 @@
-package com.example.izf;
+package izf.news;
 
 import java.io.File;
 
