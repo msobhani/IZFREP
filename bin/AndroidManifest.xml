@@ -14,22 +14,28 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Black.NoTitleBar">
+        android:theme="@android:style/Theme.Black.NoTitleBar"
+        >
         
         <activity
-            android:name="izf.news.Activity_News"/>
+            android:name="izf.news.Activity_News"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name="izf.events.Activity_Events"/>
+            android:name="izf.events.Activity_Events"
+            android:screenOrientation="portrait"/>
         
         <activity
-            android:name="izf.contact.Activity_ContactUs"/>
+            android:name="izf.contact.Activity_ContactUs"
+            android:screenOrientation="portrait"/>
         
         <activity
-            android:name="izf.prayer.Activity_Prayer"/>
+            android:name="izf.prayer.Activity_Prayer"
+            android:screenOrientation="portrait"/>
                         
         <activity
             android:name="com.example.izf.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
