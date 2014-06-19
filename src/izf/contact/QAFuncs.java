@@ -6,33 +6,36 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class QAFuncs {
-
-	private ArrayList<Contact> contacts;
-	private ArrayList<QandA> Questions;
 	
-	public ArrayList<Contact> getContacts() {
-		return contacts;
+	private static QAFuncs instance = null;
+
+	public static QAFuncs getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new QAFuncs();
+		}
+		
+		return instance;
 	}
 
-	public void setContacts(ArrayList<Contact> contacts) {
-		this.contacts = contacts;
-	}
+	private ArrayList<QandA> Questions;
 
 	public ArrayList<QandA> getQuestions() {
 		return Questions;
 	}
 
-	public void setQuestions(ArrayList<QandA> questions) {
-		Questions = questions;
-	}
-
-	public QAFuncs(JSONArray JContacts) 
-	{
-		// TODO Auto-generated constructor stub
-		this.contacts = extractContacsFromJsonArray(JContacts);
+	public void setQuestions(JSONArray JContacts) {
+		ArrayList<Contact> contacts = extractContacsFromJsonArray(JContacts);
+		Questions = bindQuestionsToAnswers(contacts);
 	}
 	
-	public ArrayList<Contact> extractContacsFromJsonArray(JSONArray JContacts)
+	public QAFuncs() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
+	private ArrayList<Contact> extractContacsFromJsonArray(JSONArray JContacts)
 	{
 		ArrayList<Contact> ans = new ArrayList<Contact>();
 		for(int i = 0 ; i < JContacts.length() ; i++)
@@ -43,7 +46,7 @@ public class QAFuncs {
 				temp.setReplyId(JContacts.getJSONObject(i).getInt("ReplyId"));
 				temp.setId(JContacts.getJSONObject(i).getInt("Id"));
 				temp.setSubject(JContacts.getJSONObject(i).getString("Subject"));
-				temp.setBody(JContacts.getJSONObject(i).getString("Body"));
+				temp.setBody(clearText(JContacts.getJSONObject(i).getString("Body")));
 				ans.add(temp);
 				
 			}
@@ -56,29 +59,7 @@ public class QAFuncs {
 		return ans;
 	}
 	
-	public ArrayList<String> getSubjects()
-	{
-		ArrayList<String> ans = new ArrayList<String>();
-		for(int i = 0 ; i < contacts.size() ; i++)
-		{
-			boolean check = false;
-			for(int j = 0 ; j < ans.size() ; j++)
-			{
-				if(contacts.get(i).getSubject().equals(ans.get(j)))
-				{
-					check = true;
-					break;
-				}
-			}
-			if(!check)
-			{
-				ans.add(contacts.get(i).getSubject());
-			}
-		}
-		return ans;
-	}
-	
-	public ArrayList<QandA> bindQuestionsToAnswers()
+	private ArrayList<QandA> bindQuestionsToAnswers(ArrayList<Contact> contacts)
 	{
 		ArrayList<QandA> ans = new ArrayList<QandA>();
 		
@@ -107,6 +88,59 @@ public class QAFuncs {
 		
 		return ans;
 	}
+	
+	public ArrayList<String> getSubjects(ArrayList<QandA> mQuestions)
+	{
+		ArrayList<String> ans = new ArrayList<String>();
+		for(int i = 0 ; i < mQuestions.size() ; i++)
+		{
+			boolean check = false;
+			for(int j = 0 ; j < ans.size() ; j++)
+			{
+				if(mQuestions.get(i).getQuestion().getSubject().equals(ans.get(j)))
+				{
+					check = true;
+					break;
+				}
+			}
+			if(!check)
+			{
+				ans.add(mQuestions.get(i).getQuestion().getSubject());
+			}
+		}
+		return ans;
+	}
+	
+	public ArrayList<QandA> getQuestionsOfSubjects(String subject)
+	{
+		ArrayList<QandA> ans = new ArrayList<QandA>();
+		for(int i = 0 ; i < Questions.size() ; i++)
+		{
+			if(Questions.get(i).getQuestion().getSubject().equals(subject))
+			{
+				ans.add(Questions.get(i));
+			}
+		}
+		return ans;
+	}
+
+	private String clearText(String input)
+    {
+    	String ans = "";
+    	boolean check = false;
+    	for(int i = 0 ;i < input.length() ; i++)
+    	{
+    		if(input.charAt(i) == '<')
+    			check = true;
+    		if(!check)
+    		{
+    			ans += input.charAt(i);
+    		}
+    		if(input.charAt(i) == '>')
+    			check = false;
+    	}
+    	return ans;
+    }
 }
 
 

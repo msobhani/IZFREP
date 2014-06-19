@@ -3,7 +3,6 @@ package com.example.izf;
 import izf.contact.Activity_ContactUs;
 import izf.events.Activity_Events;
 import izf.news.Activity_News;
-import izf.prayer.Activity_Prayer;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
