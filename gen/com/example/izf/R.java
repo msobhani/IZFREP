@@ -42,12 +42,13 @@ public final class R {
         public static final int tab_prayer=0x7f02000e;
     }
     public static final class id {
-        public static final int icon=0x7f080015;
+        public static final int icon=0x7f080016;
         public static final int imgNewsItem=0x7f08000f;
-        public static final int lvAnswers=0x7f080014;
+        public static final int lvAnswers=0x7f080015;
         public static final int lvExpEvents=0x7f080000;
         public static final int lvExpNews=0x7f080005;
         public static final int lvExpQuestions=0x7f08000b;
+        public static final int scrollView1=0x7f080013;
         public static final int tab1=0x7f080001;
         public static final int tab2=0x7f080002;
         public static final int tab3=0x7f080003;
@@ -61,7 +62,7 @@ public final class R {
         public static final int txtBody=0x7f08000d;
         public static final int txtIntro=0x7f08000c;
         public static final int txtQuestion=0x7f080011;
-        public static final int txtQuestionPopUp=0x7f080013;
+        public static final int txtQuestionPopUp=0x7f080014;
         public static final int txtSubject=0x7f080012;
         public static final int txtTitle=0x7f080010;
     }

@@ -92,7 +92,7 @@ public class Activity_ContactUs extends Activity
 	
 	private void showPopUp(QandA question)
 	{
-		final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.question_popup);
 		TextView txtQuestion = (TextView) dialog.findViewById(R.id.txtQuestionPopUp);
 		txtQuestion.setText(question.getQuestion().getBody());
@@ -102,9 +102,7 @@ public class Activity_ContactUs extends Activity
 			asnwers.add(question.getAnswers().get(i).getBody());
 		}
 		ListView lvAnswers = (ListView) dialog.findViewById(R.id.lvAnswers);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this
-				, android.R.layout.simple_list_item_1
-				, asnwers);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.question_item, R.id.txtSubject, asnwers);
 		lvAnswers.setAdapter(adapter);
 		dialog.show();
 	}
