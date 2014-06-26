@@ -9,6 +9,7 @@ import java.util.List;
 import com.example.izf.R;
  
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,26 +58,8 @@ public class EventsExpandableListviewAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.txtBody);
  
-        txtListChild.setText(clearText(_listDataHeader.get(groupPosition).getBody()));
+        txtListChild.setText(Html.fromHtml(_listDataHeader.get(groupPosition).getBody()));
         return convertView;
-    }
-    
-    private String clearText(String input)
-    {
-    	String ans = "";
-    	boolean check = false;
-    	for(int i = 0 ;i < input.length() ; i++)
-    	{
-    		if(input.charAt(i) == '<')
-    			check = true;
-    		if(!check)
-    		{
-    			ans += input.charAt(i);
-    		}
-    		if(input.charAt(i) == '>')
-    			check = false;
-    	}
-    	return ans;
     }
     
     @Override

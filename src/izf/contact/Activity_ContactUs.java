@@ -4,27 +4,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.example.izf.CloudData;
 import com.example.izf.R;
-import izf.network.JsonDownloader;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
 public class Activity_ContactUs extends Activity
 {
 	
-	private String FaqUrl = "http://izfrankfurt.de/webservices/faq";
 	private QAFuncs allQuestions;
 	ExpandableListView list;
 	private ArrayList<String> allSubjects;
@@ -39,30 +38,40 @@ public class Activity_ContactUs extends Activity
 		list = (ExpandableListView) findViewById(R.id.lvExpQuestions);
 		list.setCacheColorHint(Color.TRANSPARENT);
 		
-		JsonDownloader getContacts = new JsonDownloader(this);
-		
 		try 
 		{
-			allQuestions = QAFuncs.getInstance();
-			allQuestions.setQuestions(getContacts.execute(FaqUrl).get());
-			allSubjects = allQuestions.getSubjects(allQuestions.getQuestions());
-			allGroupedQuestions = getListFeed(allQuestions.getSubjects(allQuestions.getQuestions()));
-			ContactsExpandableListviewAdapter questionAdapter = 
-					new ContactsExpandableListviewAdapter(this.getApplicationContext()
-							, allSubjects,
-							allGroupedQuestions);
+			CloudData getFAQData;
 			
-			list.setAdapter(questionAdapter);
-			list.setOnChildClickListener(new OnChildClickListener() {
+			if(isNetworkAvailable())
+	        {
+				getFAQData = CloudData.getInstance(this, false);
+				allQuestions = QAFuncs.getInstance();
+				allQuestions.setQuestions(getFAQData.getJFAQ());
+				allSubjects = allQuestions.getSubjects(allQuestions.getQuestions());
+				allGroupedQuestions = getListFeed(allQuestions.getSubjects(allQuestions.getQuestions()));
+				ContactsExpandableListviewAdapter questionAdapter = 
+						new ContactsExpandableListviewAdapter(this.getApplicationContext()
+								, allSubjects,
+								allGroupedQuestions);
 				
-				@Override
-				public boolean onChildClick(ExpandableListView parent, View v,
-						int groupPosition, int childPosition, long id) {
-					// TODO Auto-generated method stub
-					showPopUp(allGroupedQuestions.get(allSubjects.get(groupPosition)).get(childPosition));
-					return false;
-				}
-			});
+				list.setAdapter(questionAdapter);
+				list.setOnChildClickListener(new OnChildClickListener() {
+					
+					@Override
+					public boolean onChildClick(ExpandableListView parent, View v,
+							int groupPosition, int childPosition, long id) {
+						// TODO Auto-generated method stub
+						showPopUp(allGroupedQuestions.get(allSubjects.get(groupPosition)).get(childPosition));
+						return false;
+					}
+				});
+	        }
+	        
+	        else
+	        {
+	        	Toast.makeText(this, "Connect to the Internet", Toast.LENGTH_LONG).show();
+	        }
+			
 		}
 		catch (Exception e) 
 		{
@@ -105,6 +114,12 @@ public class Activity_ContactUs extends Activity
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.question_item, R.id.txtSubject, asnwers);
 		lvAnswers.setAdapter(adapter);
 		dialog.show();
+	}
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 }
 

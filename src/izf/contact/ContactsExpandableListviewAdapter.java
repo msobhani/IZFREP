@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,27 +48,9 @@ public class ContactsExpandableListviewAdapter extends BaseExpandableListAdapter
         }
         
         TextView txtQuestion = (TextView) convertView.findViewById(R.id.txtQuestion);
-        txtQuestion.setText(clearText(_listDataChild.get(_listDataHeader.get(groupPosition)).get(childPosition).getQuestion().getBody()));
+        txtQuestion.setText(Html.fromHtml(_listDataChild.get(_listDataHeader.get(groupPosition)).get(childPosition).getQuestion().getBody()));
         
         return convertView;
-    }
-    
-    private String clearText(String input)
-    {
-    	String ans = "";
-    	boolean check = false;
-    	for(int i = 0 ;i < input.length() ; i++)
-    	{
-    		if(input.charAt(i) == '<')
-    			check = true;
-    		if(!check)
-    		{
-    			ans += input.charAt(i);
-    		}
-    		if(input.charAt(i) == '>')
-    			check = false;
-    	}
-    	return ans;
     }
     
     @Override

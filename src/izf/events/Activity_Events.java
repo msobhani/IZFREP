@@ -1,7 +1,5 @@
 package izf.events;
 
-import izf.network.JsonDownloader;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,18 +7,22 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.example.izf.CloudData;
 import com.example.izf.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 public class Activity_Events extends Activity{
 	
 	ExpandableListView list;
-    private String EventsUrl = "http://izfrankfurt.de/webservices/activity/"; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +35,25 @@ public class Activity_Events extends Activity{
 		
 		try
 		{
-			JsonDownloader getEvents = new JsonDownloader(this);
-			JSONArray obj = new JSONArray();
-			obj = getEvents.execute(EventsUrl).get();
-			ArrayList<Events> allEvents = JsonToNews(obj);
-			EventsExpandableListviewAdapter newsAdapter = 
-					new EventsExpandableListviewAdapter(this.getApplicationContext()
-							, allEvents,
-							getListFeed(allEvents));
-			list.setAdapter(newsAdapter);
+			CloudData getEvents;
+			
+			if(isNetworkAvailable())
+	        {
+				getEvents = CloudData.getInstance(this , false);
+				JSONArray obj = new JSONArray();
+				obj = getEvents.getJEvents();
+				ArrayList<Events> allEvents = JsonToNews(obj);
+				EventsExpandableListviewAdapter newsAdapter = 
+						new EventsExpandableListviewAdapter(this.getApplicationContext()
+								, allEvents,
+								getListFeed(allEvents));
+				list.setAdapter(newsAdapter);
+	        }
+	        
+	        else
+	        {
+	        	Toast.makeText(this, "Connect to the Internet", Toast.LENGTH_LONG).show();
+	        }
 		}
 		catch (Exception e) 
 		{
@@ -90,4 +102,10 @@ public class Activity_Events extends Activity{
 		return ans;	
 	}
 	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
 }

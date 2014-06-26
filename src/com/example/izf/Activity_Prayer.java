@@ -63,7 +63,7 @@ import android.webkit.WebView;
 		
 		private int getScale(){
 		    Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); 
-		    int width = (int)(display.getWidth()/1.20); 
+		    int width = display.getWidth(); 
 		    Double val = new Double(width)/new Double(720);
 		    val = val * 80d;
 		    return val.intValue();

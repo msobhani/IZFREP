@@ -55,9 +55,12 @@
         <activity
             android:name=".Activity_Prayer"
             android:screenOrientation="portrait"/>
-                        
         <activity
             android:name="com.example.izf.MainActivity"
+            android:screenOrientation="portrait"/>
+                        
+        <activity
+            android:name="com.example.izf.Activity_Splash"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
