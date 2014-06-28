@@ -16,21 +16,26 @@ public class JsonDownloader extends AsyncTask<String, String, JSONArray []>
 	Context ctx;
 	CloudData mCloudData;
 	ProgressDialog pd;
+	boolean refresh;
 	
-	public JsonDownloader(Context ctx , CloudData mCloudData)
+	public JsonDownloader(Context ctx , CloudData mCloudData , boolean refresh)
 	{
 		this.ctx = ctx;
 		this.mCloudData = mCloudData;
+		this.refresh = refresh;
 	}
 	
 	@Override
 	protected void onPreExecute()
 	{
 		super.onPreExecute();
-		pd = new ProgressDialog(ctx);
-		pd.setTitle("Get Data");
-		pd.setMessage("Downloading");
-		pd.show();
+		if(!refresh)
+		{
+			pd = new ProgressDialog(ctx);
+			pd.setTitle("Get Data");
+			pd.setMessage("Downloading");
+			pd.show();
+		}
 	}
 	
 	@Override
@@ -51,8 +56,14 @@ public class JsonDownloader extends AsyncTask<String, String, JSONArray []>
 		mCloudData.setJNews(json[0]);
 		mCloudData.setJFAQ(json[1]);
 		mCloudData.setJEvents(json[2]);
-		Intent intent = new Intent(ctx, MainActivity.class);
-		ctx.startActivity(intent);
-		pd.dismiss();
+		if(!refresh)
+		{
+			pd.dismiss();
+		}
+		else
+		{
+			Intent intent = new Intent(ctx, MainActivity.class);
+			ctx.startActivity(intent);
+		}
 	}
 }

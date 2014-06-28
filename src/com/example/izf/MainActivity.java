@@ -6,18 +6,20 @@ import izf.news.Activity_News;
 import android.app.Dialog;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.content.res.Resources.Theme;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TabHost;
 
 public class MainActivity extends TabActivity implements OnClickListener{
 
-	private Button btnOptions;
+	private ImageView btnOptions;
 	private Dialog dialog;
 	
 	@Override
@@ -26,9 +28,10 @@ public class MainActivity extends TabActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		btnOptions = (Button) findViewById(R.id.btnOptions);
+		btnOptions = (ImageView) findViewById(R.id.btnOption);
 		
 		btnOptions.setOnClickListener(this);
+		
 		
 		TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
         
@@ -61,6 +64,7 @@ public class MainActivity extends TabActivity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.option_popup);
 		dialog.show();
 		Button btnRefresh = (Button) dialog.findViewById(R.id.btnRefresh);
@@ -73,6 +77,36 @@ public class MainActivity extends TabActivity implements OnClickListener{
 				Refresh();
 			}
 		});
+		
+		Button btnAboutUs = (Button) dialog.findViewById(R.id.btnAboutUs);
+		btnAboutUs.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+				showAboutUs();
+			}
+		});
+		
+		Button btnDonate = (Button) dialog.findViewById(R.id.btnDonate);
+		btnDonate.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+				Donate();
+			}
+		});
+	}
+	
+	private void showAboutUs()
+	{
+		dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.about_us);
+		dialog.show();
 	}
 	
 	private void Donate()
@@ -87,7 +121,7 @@ public class MainActivity extends TabActivity implements OnClickListener{
 	private void Refresh()
 	{
 		CloudData data = CloudData.getInstance(this , false);
-		data.Refresh();
+		data.Refresh(false);
 	}
 	
 	@Override
