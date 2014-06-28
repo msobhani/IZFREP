@@ -4,5 +4,8 @@
     <string name="app_name">IZF</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="IZF_address">Alt Hausen 15
+Frankfurt am Main 60488
+Germany</string>
 
 </resources>
