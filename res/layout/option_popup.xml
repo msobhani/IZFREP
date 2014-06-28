@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="350dp"
+    android:background="@drawable/background_medium"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="65dp"
+        android:paddingTop="50dp" >
+
+        <Button
+            android:id="@+id/btnDonate"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/btn_donate"
+            android:paddingLeft="65dp"
+            android:paddingTop="50dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="65dp"
+        android:paddingTop="20dp" >
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/btn_refresh"
+            android:paddingTop="20dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="65dp"
+        android:paddingTop="20dp" >
+
+        <Button
+            android:id="@+id/btnAboutUs"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/btn_about_us" />
+
+    </TableRow>
+
+</LinearLayout>
