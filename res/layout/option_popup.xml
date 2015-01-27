@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/background_medium" android:layout_width="200.0dip" android:layout_height="350.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TableRow android:gravity="center" android:layout_gravity="center" android:id="@id/tableRow1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="25.0dip" android:layout_weight="1.0">
+        <Button android:id="@+id/btnDonate" 
+            android:background="@drawable/btn_donate" 
+            android:paddingLeft="0.0dip" 
+            android:paddingTop="50.0dip" 
+            android:paddingRight="40.0dip" 
+            android:layout_width="115.0dip" 
+            android:layout_height="70.0dip" />
+    </TableRow>
+    <TableRow android:gravity="center" android:layout_gravity="center" android:id="@+id/tableRow2" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+        <ToggleButton android:id="@+id/btnLanguage" 
+            android:background="@drawable/btn_language" 
+            android:paddingLeft="0.0dip" 
+            android:paddingRight="40.0dip" 
+            android:layout_width="120.0dip" 
+            android:layout_height="100.0dip" 
+            android:textOn="" 
+            android:textOff="" />
+    </TableRow>
+    <TableRow android:gravity="center" android:layout_gravity="center" android:id="@+id/tableRow3" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="25.0dip" android:layout_weight="1.0">
+        <Button android:id="@+id/btnAboutUs" 
+            android:background="@drawable/btn_about_us" 
+            android:layout_width="120.0dip" 
+            android:layout_height="100.0dip" />
+    </TableRow>
+</LinearLayout>

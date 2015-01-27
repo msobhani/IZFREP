@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="DarkGrey">#282828</color>
+    <color name="LighterDarkGrey">#535353</color>
+    <color name="DarkBlue">#112cb8ec</color>
+    <color name="DarkBluePressed">#332cb8ec</color>
+</resources>

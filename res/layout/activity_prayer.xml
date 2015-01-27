@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <org.apache.cordova.CordovaWebView
+            android:id="@+id/compassView"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp" >
+
+                    <TextView
+                        android:id="@+id/tvFajrlbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="@string/Fajr"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tvFajr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:text="--:--"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp" >
+
+                    <TextView
+                        android:id="@+id/tvSobhLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="@string/Sobh"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tvSobh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:text="--:--"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp" >
+
+                    <TextView
+                        android:id="@+id/tvZohrLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="@string/Zohr"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tvZohr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:text="--:--"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp" >
+
+                    <TextView
+                        android:id="@+id/tvMaghribLbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="left"
+                        android:text="@string/Maghrib"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tvMaghrib"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:text="--:--"
+                        android:textColor="@color/DarkGrey"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>
